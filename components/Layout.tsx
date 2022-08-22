@@ -2,23 +2,35 @@ import Head from "next/head";
 import React from "react";
 import styles from "../styles/utils.module.css"
 import Nav from "./Nav";
+import { SCALE } from "../utils/vars"
 
 export default function Layout({children}: {children: React.ReactNode}) {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Tele Log</title>
       </Head>
-      <header>
+      <div className="nav">
         <Nav />
-      </header>
-      <main>
-        <h1 className={styles.heading2xl}>Tele Log</h1>
+      </div>
+      <div className={`const ${ styles.container }`}>
         {children}
-      </main>
-      <footer>
-        footer
-      </footer>
+        <footer>
+          footer
+        </footer>
+      </div>
+      <style jsx>{`
+        .nav {
+          position: fixed;
+          top: 0;
+          width: 100%;
+          z-index: 1;
+        }
+        .const {
+          positio: relative;
+          margin: ${SCALE}rem 0 0 0;
+        }
+        `}</style>
     </div>
   );
 }
